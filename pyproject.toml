@@ -8,15 +8,13 @@ dependencies = []
 
 [dependency-groups]
 dev = [
-  "poethepoet>=0.30.0",
   "ruff>=0.7.4",
 ]
 
 [tool.poe.tasks]
-check = "uv run ruff check"
-[tool.poe.tasks.format]
-shell = """
-uv run ruff format &&
+check = "ruff check"
+format.shell = """
+ruff format &&
 # biome format --write . &&
 dprint fmt &&
 textlint --fix "**/*.md"

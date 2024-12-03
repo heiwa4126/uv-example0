@@ -11,12 +11,19 @@ uv の練習。
 
 PyPI に出すところまでやってみる。
 
-## 最初の手順
+## uvのインストール
+
+1. [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
+2. インストール後、パスを通すなど指示に従う。
+3. `uv tool install poethepoet` PoeThePoet だけはユーザ単位でインストールしておく。
+   時々 `uv tool upgrade --all` で更新する。
+
+## プロジェクトを作る手順
 
 ```sh
 uv init uv-example0
 cd uv-example0
-uv add --dev ruff poethepoet
+uv add --dev ruff
 code .
 ```
 
@@ -24,14 +31,10 @@ code .
 
 ```toml
 [tool.poe.tasks]
-check = "uv run ruff check"
-format = "uv run ruff format"
+check = "ruff check"
+format = "ruff format"
 ```
 
 を追加して、`poe format` とか実行してみる。
 
-### 議論するべき点
-
-poethepoet のタスクは、venv 下にあるものとして書くべきなのか。
-それとも venv 下になくても動くように書くべきか。
-(たぶん後者)
+※ poe は ./.venv を見る。参照: [Change the executor type](https://poethepoet.natn.io/global_options.html#change-the-executor-type)
