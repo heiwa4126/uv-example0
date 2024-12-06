@@ -21,3 +21,5 @@ dprint fmt &&
 textlint --fix "**/*.md"
 """
 requirements = "uv pip compile pyproject.toml -o requirements.txt"
+uvsync = "uv sync"
+sync = ["uvsync", "requirements"]
