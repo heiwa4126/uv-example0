@@ -14,8 +14,13 @@ uv をパッケージマネージャとして使う練習。
 
 1. [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
 2. インストール後、パスを通すなど指示に従う。
-3. `uv tool install poethepoet` PoeThePoet だけはユーザ単位でインストールしておく。
-   時々 `uv tool upgrade --all` で更新する。
+3. PoeThePoetとruffはユーザ単位でインストールしておく。
+	```sh
+	uv tool install poethepoet
+	uv tool install ruff
+	# 1行で書けたらいいのに
+	```
+	時々 `uv tool upgrade --all` で更新する。
 
 ## プロジェクトを作る手順
 
@@ -39,6 +44,11 @@ format = "ruff format"
 
 ※ poe は ./.venv を見る。上の `check` と `format` は .venv の下の ruff。
 参照: [Change the executor type](https://poethepoet.natn.io/global_options.html#change-the-executor-type)
+
+**`pyproject.toml`　よりも `poe_tasks.toml`　に書いた方がいいと思う。パッケージにしたとき、不要だから。**
+→ 移動しました。
+
+
 
 ## プロジェクトをクローンして始める
 

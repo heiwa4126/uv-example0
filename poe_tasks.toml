@@ -1,0 +1,14 @@
+[tasks]
+hello = "uv run hello.py"
+check = "ruff check"
+
+format.shell = """
+ruff format &&
+# biome format --write . &&
+dprint fmt &&
+textlint --fix "**/*.md"
+"""
+
+requirements = "uv pip compile pyproject.toml -o requirements.txt"
+uvsync = "uv sync"
+sync = ["uvsync", "requirements"]
