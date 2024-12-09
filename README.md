@@ -1,17 +1,16 @@
 # uv-example0
 
-uv の練習。
+uv をパッケージマネージャとして使う練習。
 
 [uv の GitHub の Features](https://github.com/astral-sh/uv?tab=readme-ov-file#features)
 にあるやつに、
-タスクランナーとして[poethepoet](https://pypi.org/project/poethepoet/)
-と、
-フォーマッター兼リンターとして[ruff](https://pypi.org/project/ruff/)
-を足したところ。
 
-PyPI に出すところまでやってみる。
+- タスクランナーとして[PoeThePoet](https://pypi.org/project/poethepoet/) - .venv の下
+- フォーマッター兼リンターとして[ruff](https://pypi.org/project/ruff/) - `uv tool install`で
 
-## uvのインストール
+を足したところ。PyPI に出すところまでやってみる予定
+
+## uv のインストール
 
 1. [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
 2. インストール後、パスを通すなど指示に従う。
@@ -31,10 +30,20 @@ code .
 
 ```toml
 [tool.poe.tasks]
+hello = "uv run hello.py"
 check = "ruff check"
 format = "ruff format"
 ```
 
 を追加して、`poe format` とか実行してみる。
 
-※ poe は ./.venv を見る。参照: [Change the executor type](https://poethepoet.natn.io/global_options.html#change-the-executor-type)
+※ poe は ./.venv を見る。上の `check` と `format` は .venv の下の ruff。
+参照: [Change the executor type](https://poethepoet.natn.io/global_options.html#change-the-executor-type)
+
+## プロジェクトをクローンして始める
+
+```sh
+git clone xxxx && cd xxxx
+uv sync  # または `uv sync --lock`
+poe hello
+```

@@ -6,12 +6,13 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
 
-[dependency-groups]
-dev = [
-  "ruff>=0.7.4",
-]
+# [dependency-groups]
+# dev = [
+#   "ruff>=0.7.4",  # move to `uv tool instal ruff`
+# ]
 
 [tool.poe.tasks]
+hello = "uv run hello.py"
 check = "ruff check"
 format.shell = """
 ruff format &&
@@ -19,3 +20,6 @@ ruff format &&
 dprint fmt &&
 textlint --fix "**/*.md"
 """
+requirements = "uv pip compile pyproject.toml -o requirements.txt"
+uvsync = "uv sync"
+sync = ["uvsync", "requirements"]
